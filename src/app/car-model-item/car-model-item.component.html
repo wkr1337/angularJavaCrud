@@ -1,0 +1,6 @@
+<div *ngIf='!editMode'>
+  {{model.name}} <button (click)='onEdit()'>Bewerken</button> <button (click)='onDelete()'>Verwijderen</button>
+</div>
+<div *ngIf='editMode'>
+  <input type='text' [(ngModel)]='model.name' /> <button (click)='save()'>Opslaan</button>
+</div>

@@ -1,0 +1,17 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+
+  <div class='car-brand-list'>
+      <div class='item-wrapper' *ngFor='let brand of CarBrands'>
+        {{brand.name}}
+      </div>
+    </div>
+
+  <div class='car-model-list'>
+    <div class='item-wrapper' *ngFor='let carmodel of CurrentCarModels'>
+      <app-car-model-item [model]='carmodel' (onDeleted)='onModelDeleted(carmodel)'></app-car-model-item>
+    </div>
+  </div>
