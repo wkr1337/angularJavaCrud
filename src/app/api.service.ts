@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { CarBrand } from './models/CarBrand';
 import { CarModel } from './models/CarModel';
 
@@ -8,7 +8,7 @@ import { CarModel } from './models/CarModel';
 })
 export class ApiService {
 
-  host:string = "http://localhost:8081/quintorrest/webapi/";
+  host: string = "http://localhost:8081/quintorrest/webapi/";
 
   constructor(private http: HttpClient) { }
 
@@ -17,15 +17,23 @@ export class ApiService {
   }
 
   getModels(brandid: number) {
-    return this.http.get<CarModel[]>(this.host + "models/brands/"+brandid);
+    return this.http.get<CarModel[]>(this.host + "models/brands/" + brandid);
   }
 
-  editModel(m: CarModel){
+  getBrandByName(brandName: string) {
+    return this.http.get<CarBrand>(this.host + "brands/brand/brandname/" + brandName);
+  }
+
+  editModel(m: CarModel) {
     return this.http.patch(this.host + 'models/model', m);
   }
 
-  deleteModel(m: CarModel){
-    return this.http.delete(this.host +'models/model/' + m.id);
+  deleteModel(m: CarModel) {
+    return this.http.delete(this.host + 'models/model/' + m.id);
   }
 
+  saveModel(m: CarModel) {
+    return this.http.post<CarModel>(this.host + 'models/model', m);
+  }
+  
 }

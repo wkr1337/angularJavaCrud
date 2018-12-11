@@ -25,20 +25,20 @@ export class CarModelItemComponent implements OnInit {
   }
 
   onDelete() {
-    //iets api doen bv api.editCarBrand(this.model)
     this.api.deleteModel(this.model).subscribe(()=>{
-      console.log("deleted model", this.model);
-      this.onDeleted.emit(this.model);
+      // console.log("deleted model", this.model);
     });
-    
+    this.onDeleted.emit(this.model);
+
   }
 
   save() {
-    //iets api doen bv api.editCarBrand(this.model)
     this.api.editModel(this.model).subscribe(()=>{
-      console.log("updated model", this.model);
+      // console.log("updated model", this.model);
+      
     });
     this.editMode = false;
   }
+  
 
 }

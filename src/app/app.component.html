@@ -3,8 +3,15 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
+<div class="searchModels">
+    <label for="searchModels">Car brand</label><br>
+    <input name="searchModels"type='text' [(ngModel)]='currentBrandName' required/><br> 
+    <button (click)='searchModels()'>Find models</button><br>
 
-  <div class='car-brand-list'>
+
+</div>
+<button (click)="showAllBrands = true">Show all the car brands</button>
+  <div *ngIf="showAllBrands" class='car-brand-list'>
       <div class='item-wrapper' *ngFor='let brand of CarBrands'>
         {{brand.name}}
       </div>
@@ -15,3 +22,26 @@
       <app-car-model-item [model]='carmodel' (onDeleted)='onModelDeleted(carmodel)'></app-car-model-item>
     </div>
   </div>
+
+  <div class="add-wrapper">
+  <div *ngIf='addMode'>
+      <label for="model-name-input">Model name </label>
+
+    <input name="model-name-input" type='text' [(ngModel)]='model.name' required/><br> 
+    
+    <label for="model-brandid-input">Model brand </label>
+
+    <select name="model-brandid-input" class="form-control" id="brandIdSelect" required [(ngModel)]='model.brand_id'>
+      <option *ngFor="let brand of CarBrands" [value]="brand.id">{{brand.name}}</option>
+    </select>
+
+
+    <button (click)='save()'>Save</button><br>
+
+  </div>
+<div *ngIf='!addMode'>
+  <button (click)='addModelInput()'>Add a new model</button><br>
+
+</div>
+</div>
+{{message}}
